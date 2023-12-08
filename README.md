@@ -16,9 +16,11 @@
 	http://localhost:8081/user/populateDB
 	   
 	   It will insert below kind of data in the DB -
-		# id, 	name,				email, 				username, 		password, 														roles
-		1, 		Lokesh Mittal,		lokesh@gmail.com, 	lokesh,			$2a$10$VJD5wLO/IU1nDG.Iq/xhQ.g.6KySfH/tZnmUI.BglsRDFcMfk.x7C, 	ROLE_ADMIN
-		2, 		Sumit Mittal,		sumit@gmail.com, 	sumit,		 	$2a$10$dS65viM/oNjCBI5kkEOJvegRau7z6jSfC4cRS.mj.v2Ds9fIB6dRu, 	ROLE_USER
+
+    
+		# id, 	   name,		email, 			username, 		password,                                                       roles
+		1, 	   Lokesh Mittal,	lokesh@gmail.com, 	lokesh,			$2a$10$VJD5wLO/IU1nDG.Iq/xhQ.g.6KySfH/tZnmUI.BglsRDFcMfk.x7C, 	ROLE_ADMIN
+		2, 	   Sumit Mittal,	sumit@gmail.com, 	sumit,		 	$2a$10$dS65viM/oNjCBI5kkEOJvegRau7z6jSfC4cRS.mj.v2Ds9fIB6dRu, 	ROLE_USER
 </p>
 
 
