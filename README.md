@@ -1,4 +1,4 @@
-# Spring Boot 3.0 with Spring Security 6.0
+# Spring Security 6.0 with Spring Boot 3.0
 
 <p>
 	This repository contains Spring Security 6.0 implementation with Spring boot 3.0 
