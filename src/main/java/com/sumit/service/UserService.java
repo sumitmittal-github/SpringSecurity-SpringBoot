@@ -1,40 +1,27 @@
 package com.sumit.service;
 
 import com.sumit.entity.User;
+import com.sumit.enums.Roles;
 import com.sumit.repository.UserRepository;
-import com.sumit.config.UserToUserDetail;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
-
-import java.util.Optional;
+import java.util.List;
 
 @Component
-public class UserService implements UserDetailsService {
+public class UserService {
 
     @Autowired
     private UserRepository userRepository;
 
     @Autowired
-    private PasswordEncoder encoder;
-
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Optional<User> user = userRepository.findByUsername(username);
-
-        // Convert Database User to SpringSecurity UserDetail type
-        return user.map(UserToUserDetail::new)
-                .orElseThrow(() -> new UsernameNotFoundException("User "+username+" not found !!!"));
-    }
+    private final BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder(12);
 
     public String createInitialUsersInDB() {
-        User adminUser = new User("Lokesh Mittal", "lokesh@gmail.com", "lokesh", encoder.encode("pwd1"), "ROLE_ADMIN");
+        User adminUser = new User("Lokesh Mittal", "lokesh@gmail.com", "lokesh", bCryptPasswordEncoder.encode("pwd1"), List.of(Roles.ROLE_ADMIN.toString()));
         userRepository.save(adminUser);
 
-        User normalUser = new User("Sumit Mittal", "sumit@gmail.com", "sumit", encoder.encode("pwd2"), "ROLE_USER");
+        User normalUser = new User("Sumit Mittal", "sumit@gmail.com", "sumit", bCryptPasswordEncoder.encode("pwd2"), List.of(Roles.ROLE_USER.toString()));
         userRepository.save(normalUser);
 
         return "User saved in DB";
